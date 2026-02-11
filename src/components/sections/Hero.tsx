@@ -12,8 +12,8 @@ export function Hero() {
   const heroImg = PlaceHolderImages.find(img => img.id === 'hero-bg');
 
   return (
-    <section id="inicio" className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
-      {/* Dynamic Backgrounds */}
+    <section id="inicio" className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-visible">
+      {/* Dynamic Backgrounds (Bubbles/Orbs) */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,121,255,0.1),transparent_50%)]" />
       <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse-soft" />
       <div className="absolute bottom-[5%] left-[-5%] w-[400px] h-[400px] bg-accent/30 rounded-full blur-[100px] -z-10" />
@@ -29,9 +29,6 @@ export function Hero() {
             Tu historia aún tiene <br />
             <span className="text-gradient italic relative inline-block">
               muchas páginas
-              <svg className="absolute -bottom-4 left-0 w-full text-primary/30" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0,10 Q50,25 100,10" stroke="currentColor" strokeWidth="4" fill="none" />
-              </svg>
             </span>
           </h1>
 
@@ -57,8 +54,8 @@ export function Hero() {
           <div className="flex items-center gap-4 pt-4 text-muted-foreground/60 animate-fade-in [animation-delay:400ms]">
             <div className="flex -space-x-3">
               {[1, 2, 3].map(i => (
-                <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-secondary flex items-center justify-center text-[10px] font-bold">
-                  IA
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-primary/10 flex items-center justify-center text-[8px] font-bold text-primary">
+                  SOPORTE
                 </div>
               ))}
             </div>
@@ -69,10 +66,8 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative animate-fade-up [animation-delay:200ms]">
-          {/* Main Card Container */}
+        <div className="relative animate-fade-up [animation-delay:200ms] lg:block">
           <div className="relative z-10 animate-float">
-             {/* Actual Image Box with clipping */}
             <div className="rounded-[3.5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] bg-white p-4">
               <div className="rounded-[2.5rem] overflow-hidden">
                 {heroImg && (
@@ -89,24 +84,24 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Contextual Floating UI - Outside the image box */}
-            <div className="absolute top-12 -left-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 border border-primary/10">
+            {/* Floating Info Bubbles */}
+            <div className="absolute top-12 -left-12 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4">
               <div className="bg-primary/20 p-3 rounded-2xl">
                 <Heart className="w-6 h-6 text-primary fill-primary/40" />
               </div>
               <div>
-                <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
                 <p className="font-bold text-lg">Estamos contigo</p>
               </div>
             </div>
 
-            <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2s] z-20 hidden md:flex items-center gap-4 border border-primary/10">
+            <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2s] z-20 hidden md:flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6 text-green-600" />
               </div>
               <div>
-                 <p className="text-sm font-bold text-foreground text-nowrap">Espacio Seguro</p>
-                 <p className="text-xs text-muted-foreground text-nowrap">Privacidad garantizada</p>
+                 <p className="text-sm font-bold text-foreground">Espacio Seguro</p>
+                 <p className="text-xs text-muted-foreground">Privacidad garantizada</p>
               </div>
             </div>
           </div>
@@ -115,7 +110,6 @@ export function Hero() {
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-fade-in [animation-delay:800ms]">
         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground/40">Desliza para explorar</p>
-        <div className="w-px h-12 bg-gradient-to-b from-primary/50 to-transparent" />
       </div>
     </section>
   );
