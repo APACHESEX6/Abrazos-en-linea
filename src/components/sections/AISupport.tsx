@@ -5,19 +5,21 @@ import { aiResponderForResources } from '@/ai/flows/ai-responder-for-resources';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Sparkles, Send, Loader2, User, Bot, HelpCircle, Heart, MessageSquare, History } from 'lucide-react';
+import { Sparkles, Send, Loader2, User, Bot, HelpCircle, Heart, MessageSquare, History, AlertCircle, ShieldAlert } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 const SUGGESTIONS = [
   "Me siento muy solo hoy",
-  "No tengo ganas de hacer nada",
-  "¿Cómo puedo pedir ayuda?",
-  "Necesito consejos de respiración"
+  "No tengo ganas de nada",
+  "¿Cómo pido ayuda?",
+  "Necesito respirar"
 ];
 
 export function AISupport() {
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showCrisisAlert, setShowCrisisAlert] = useState(false);
   const [messages, setMessages] = useState<Array<{ type: 'user' | 'bot', text: string, resource?: string }>>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +40,11 @@ export function AISupport() {
     setIsLoading(true);
     try {
       const result = await aiResponderForResources({ query: finalQuery });
+      
+      if (result.isCrisis) {
+        setShowCrisisAlert(true);
+      }
+
       setMessages(prev => [...prev, { 
         type: 'bot', 
         text: result.response,
@@ -46,7 +53,7 @@ export function AISupport() {
     } catch (error) {
       setMessages(prev => [...prev, { 
         type: 'bot', 
-        text: "Lo siento, tuve un problema de conexión. Pero recuerda: no estás solo y siempre hay alguien para escucharte." 
+        text: "Lo siento, tuve un problema. Pero recuerda: no estás solo y siempre hay alguien para escucharte. Llama al 717 003 717." 
       }]);
     } finally {
       setIsLoading(false);
@@ -56,6 +63,22 @@ export function AISupport() {
   return (
     <section id="ai-support" className="py-32 bg-secondary/30 relative">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
+        
+        {showCrisisAlert && (
+          <div className="mb-12 animate-fade-up">
+            <Alert variant="destructive" className="bg-destructive text-white border-none rounded-[2.5rem] p-8 shadow-2xl">
+              <ShieldAlert className="w-8 h-8 text-white" />
+              <AlertTitle className="text-2xl font-bold ml-4">Necesitas ayuda profesional inmediata</AlertTitle>
+              <AlertDescription className="text-lg ml-4 mt-2 font-medium">
+                Detectamos que podrías estar en riesgo. Por favor, llama ahora mismo a la Línea de la Esperanza: <span className="underline font-black">717 003 717</span> o al 911.
+              </AlertDescription>
+              <Button variant="outline" className="mt-6 ml-4 bg-white text-destructive border-none font-bold rounded-2xl" onClick={() => setShowCrisisAlert(false)}>
+                Entendido
+              </Button>
+            </Alert>
+          </div>
+        )}
+
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           
           <div className="lg:col-span-4 space-y-8 animate-fade-up">
@@ -67,17 +90,17 @@ export function AISupport() {
               Habla con <span className="text-gradient italic">Esperanza</span>
             </h2>
             <p className="text-muted-foreground text-xl font-medium leading-relaxed">
-              Nuestra IA está entrenada para escucharte, validarte y guiarte hacia recursos útiles las 24 horas del día. Es un lugar seguro donde empezar.
+              Un lugar seguro para empezar a hablar. Nuestra IA está diseñada bajo parámetros de empatía y validación emocional.
             </p>
             
             <div className="space-y-4 pt-6">
-              <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">¿No sabes qué decir? Prueba con:</p>
+              <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Sugerencias rápidas:</p>
               <div className="flex flex-wrap gap-3">
                 {SUGGESTIONS.map((s, i) => (
                   <button
                     key={i}
                     onClick={() => handleSubmit(null as any, s)}
-                    className="bg-white border border-primary/10 px-4 py-2.5 rounded-2xl text-sm font-semibold text-foreground/80 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm active:scale-95"
+                    className="bg-white border border-primary/10 px-4 py-2.5 rounded-2xl text-sm font-semibold text-foreground/80 hover:bg-primary hover:text-white transition-all shadow-sm active:scale-95"
                   >
                     {s}
                   </button>
@@ -86,12 +109,12 @@ export function AISupport() {
             </div>
 
             <div className="bg-white/50 p-6 rounded-[2.5rem] border border-white/20 backdrop-blur-sm">
-              <div className="flex items-center gap-4 mb-4 text-destructive">
-                <History className="w-5 h-5" />
-                <p className="font-bold">Privacidad Total</p>
+              <div className="flex items-center gap-4 mb-4 text-primary">
+                <AlertCircle className="w-5 h-5" />
+                <p className="font-bold">Límites de la IA</p>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Tus conversaciones son privadas y no se guardan en tu perfil. Este es tu espacio de descarga personal.
+                Esta IA no sustituye a un terapeuta humano. Es una herramienta de primera escucha y orientación hacia recursos profesionales.
               </p>
             </div>
           </div>
@@ -100,7 +123,6 @@ export function AISupport() {
             <Card className="border-none shadow-[0_48px_128px_-32px_rgba(168,121,255,0.15)] rounded-[3.5rem] overflow-hidden glass-card animate-fade-up [animation-delay:200ms]">
               <CardContent className="p-0">
                 <div className="flex flex-col h-[700px]">
-                  {/* Chat Header */}
                   <div className="p-8 bg-white/50 border-b border-primary/5 flex items-center justify-between">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
@@ -115,7 +137,6 @@ export function AISupport() {
                     </div>
                   </div>
 
-                  {/* Messages */}
                   <div ref={scrollRef} className="flex-1 overflow-y-auto p-10 space-y-10 scroll-smooth">
                     {messages.length === 0 && !isLoading && (
                       <div className="flex flex-col items-center justify-center h-full text-center space-y-8 opacity-60">
@@ -124,7 +145,7 @@ export function AISupport() {
                         </div>
                         <div className="space-y-3">
                           <p className="font-bold text-2xl text-foreground">Tu espacio para ser tú</p>
-                          <p className="text-muted-foreground text-lg max-w-sm mx-auto">Comparte cómo te sientes o pide consejos para manejar este momento.</p>
+                          <p className="text-muted-foreground text-lg max-w-sm mx-auto">Todo lo que compartas aquí es anónimo y privado.</p>
                         </div>
                       </div>
                     )}
@@ -147,11 +168,9 @@ export function AISupport() {
 
                           {msg.resource && (
                             <div className="mt-4 bg-primary/10 p-6 rounded-3xl border border-primary/20 shadow-inner group">
-                              <div className="flex items-center justify-between mb-3">
-                                <p className="text-xs font-bold text-primary flex items-center gap-2 uppercase tracking-widest">
-                                  <Heart className="w-3.5 h-3.5 fill-primary" /> Sugerencia de Apoyo
-                                </p>
-                              </div>
+                              <p className="text-xs font-bold text-primary flex items-center gap-2 uppercase tracking-widest mb-2">
+                                <Heart className="w-3.5 h-3.5 fill-primary" /> Recurso Sugerido
+                              </p>
                               <p className="text-sm font-bold leading-relaxed text-primary-foreground/90">{msg.resource}</p>
                             </div>
                           )}
@@ -173,13 +192,12 @@ export function AISupport() {
                     )}
                   </div>
 
-                  {/* Form */}
                   <form onSubmit={handleSubmit} className="p-10 bg-white/50 backdrop-blur-xl border-t border-primary/5">
                     <div className="relative group max-w-4xl mx-auto">
                       <Textarea 
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Comparte tus pensamientos..."
+                        placeholder="Escribe cómo te sientes..."
                         className="pr-20 min-h-[120px] border-primary/10 bg-secondary/20 focus:bg-white focus:border-primary focus:ring-primary/10 rounded-[2.5rem] resize-none text-lg p-8 transition-all duration-500 shadow-inner"
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && !e.shiftKey) {
@@ -196,15 +214,6 @@ export function AISupport() {
                       >
                         {isLoading ? <Loader2 className="animate-spin" /> : <Send className="w-6 h-6" />}
                       </Button>
-                    </div>
-                    <div className="flex items-center justify-between mt-8 max-w-4xl mx-auto px-4">
-                       <p className="text-[10px] text-muted-foreground font-bold italic">
-                        * IA de apoyo emocional. No sustituye diagnóstico médico.
-                      </p>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-destructive rounded-full animate-ping" />
-                        <p className="text-[10px] font-black text-destructive tracking-widest uppercase">Peligro Inmediato: Llama al 911</p>
-                      </div>
                     </div>
                   </form>
                 </div>

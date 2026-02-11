@@ -1,21 +1,21 @@
-
 "use client"
 
 import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw, Info, HeartHandshake, ShieldAlert } from 'lucide-react';
+import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw, Info, HeartHandshake, ShieldAlert, AlertTriangle } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import Link from 'next/link';
 
+// Preguntas refinadas basadas en indicadores de riesgo adolescente (similares a protocolos ASQ)
 const questions = [
-  "¿Sientes una tristeza profunda que parece no irse?",
-  "¿Has perdido el interés por las cosas que antes te hacían feliz?",
-  "¿Sientes que el futuro es incierto o sin esperanza?",
-  "¿Has pensado en que estarías mejor si no estuvieras?",
-  "¿Sientes que eres una carga para los demás?",
-  "¿Te sientes agotado emocionalmente de forma constante?"
+  "¿Te has sentido tan solo o incomprendido que sientes que nadie puede ayudarte?",
+  "¿Has deseado dormir y no despertar, o simplemente dejar de existir?",
+  "¿Sientes que los problemas que tienes no tienen ninguna solución posible?",
+  "¿Has pensado en algún plan o método para hacerte daño recientemente?",
+  "¿Sientes que ya no disfrutas de absolutamente nada de lo que antes te gustaba?",
+  "¿Te sientes atrapado en tus pensamientos y no encuentras una salida?"
 ];
 
 export function Assessment() {
@@ -44,7 +44,6 @@ export function Assessment() {
 
   return (
     <section id="test" className="py-32 bg-white relative overflow-hidden">
-      {/* Decorative Orbs */}
       <div className="absolute top-1/4 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] -z-10" />
       <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-accent/20 rounded-full blur-[100px] -z-10" />
 
@@ -62,7 +61,7 @@ export function Assessment() {
                       Tu Bienestar <br />Importa
                     </h2>
                     <p className="text-lg text-muted-foreground font-medium leading-relaxed mb-10">
-                      Tómate un momento para reflexionar sobre cómo te sientes. Esta evaluación es totalmente privada y solo sirve como guía.
+                      Tómate un momento para reflexionar. Esta herramienta ayuda a identificar señales que merecen atención profesional.
                     </p>
                   </div>
                   
@@ -83,7 +82,7 @@ export function Assessment() {
                 <div className="p-12 md:p-20 flex flex-col justify-center items-center text-center space-y-12">
                   <div className="space-y-4">
                     <p className="text-xs font-black text-primary uppercase tracking-[0.3em]">Pregunta {step + 1}</p>
-                    <h3 className="text-3xl md:text-4xl font-headline font-bold leading-tight animate-scale-in">
+                    <h3 className="text-2xl md:text-3xl font-headline font-bold leading-tight animate-scale-in">
                       "{questions[step]}"
                     </h3>
                   </div>
@@ -105,11 +104,6 @@ export function Assessment() {
                       No
                     </Button>
                   </div>
-                  
-                  <div className="flex items-center gap-2 text-muted-foreground/50 italic text-sm">
-                    <Info className="w-4 h-4" />
-                    Solo te tomará un minuto
-                  </div>
                 </div>
               </div>
             </>
@@ -122,11 +116,11 @@ export function Assessment() {
               </div>
               
               <div className="space-y-6 max-w-3xl mx-auto">
-                <h3 className="text-5xl md:text-6xl font-headline font-bold">Gracias por confiar</h3>
+                <h3 className="text-5xl md:text-6xl font-headline font-bold">Gracias por tu honestidad</h3>
                 <p className="text-2xl text-muted-foreground font-medium leading-relaxed">
-                  {positiveCount > 3 
-                    ? "Tus respuestas indican que estás pasando por un momento de mucha carga emocional. Es valiente reconocerlo. El siguiente paso es hablarlo."
-                    : "Parece que estás afrontando tus desafíos, pero recuerda que pedir apoyo siempre es una fortaleza, no una debilidad."}
+                  {positiveCount > 2 
+                    ? "Tus respuestas sugieren que estás pasando por un momento de alta vulnerabilidad emocional. Lo más importante ahora es que no intentes llevar esto solo."
+                    : "Parece que tienes algunos desafíos, pero reconocerlos ya es un gran paso. Mantente alerta y busca apoyo si estos sentimientos aumentan."}
                 </p>
               </div>
 
@@ -137,13 +131,20 @@ export function Assessment() {
                 </Button>
                 <Button className="rounded-[2rem] shadow-2xl shadow-primary/30 h-16 px-12 text-lg font-bold bg-primary text-white border-none transition-all hover:scale-105" asChild>
                   <Link href="#recursos">
-                    Ver Centros de Ayuda
+                    Ver Ayuda Profesional
                     <ChevronRight className="w-6 h-6 ml-2" />
                   </Link>
                 </Button>
               </div>
 
-              {positiveCount > 3 && (
+              <div className="mt-12 bg-secondary/30 p-8 rounded-[2.5rem] max-w-2xl mx-auto border border-primary/10 flex items-start gap-4 text-left">
+                <AlertTriangle className="w-8 h-8 text-amber-500 shrink-0 mt-1" />
+                <p className="text-sm text-muted-foreground italic">
+                  <strong>Aviso Legal Importante:</strong> Esta herramienta es un cuestionario de cribado informativo, no sustituye una evaluación clínica, diagnóstico médico o tratamiento profesional. Si estás en peligro inmediato, llama al 911 o 717 003 717.
+                </p>
+              </div>
+
+              {positiveCount > 2 && (
                 <div className="mt-12 animate-fade-up">
                   <Alert variant="destructive" className="text-left border-destructive/20 bg-destructive/5 p-10 rounded-[3rem] max-w-3xl mx-auto border-2">
                     <div className="flex items-start gap-6">
@@ -151,9 +152,9 @@ export function Assessment() {
                          <ShieldAlert className="w-7 h-7 text-white" />
                       </div>
                       <div className="space-y-3">
-                        <AlertTitle className="font-bold text-2xl mb-1 text-destructive">¡Tu vida es importante!</AlertTitle>
+                        <AlertTitle className="font-bold text-2xl mb-1 text-destructive">Prioridad de Ayuda Humana</AlertTitle>
                         <AlertDescription className="text-lg font-medium leading-relaxed opacity-80">
-                          Por favor, considera hablar con un profesional hoy mismo. Tienes mucho por vivir y estamos aquí para ayudarte a encontrar el camino.
+                          Recomendamos encarecidamente hablar con un profesional hoy mismo. Llama al 717 003 717. No estás solo.
                         </AlertDescription>
                       </div>
                     </div>

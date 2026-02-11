@@ -22,10 +22,7 @@ const AIResponderForResourcesOutputSchema = z.object({
   resourceSuggestion: z
     .string()
     .describe('A suggested resource or coping strategy based on the query.'),
-  isContentHelpful: z
-    .boolean()
-    .optional()
-    .describe('Whether or not the response content is helpful for the user.'),
+  isCrisis: z.boolean().describe('Whether the user input indicates an immediate risk or crisis.'),
 });
 export type AIResponderForResourcesOutput = z.infer<typeof AIResponderForResourcesOutputSchema>;
 
@@ -37,14 +34,17 @@ const prompt = ai.definePrompt({
   name: 'aiResponderForResourcesPrompt',
   input: {schema: AIResponderForResourcesInputSchema},
   output: {schema: AIResponderForResourcesOutputSchema},
-  prompt: `You are an AI assistant designed to provide empathetic and personalized responses to user inquiries related to suicide prevention.
+  prompt: `Eres un asistente de IA especializado en apoyo emocional y prevención del suicidio para adolescentes. Tu tono debe ser extremadamente empático, cálido y no juicioso.
 
-  Your goal is to offer support, guidance, and direct users towards helpful resources and coping strategies.
-  Consider the user's query and provide a thoughtful response, suggesting a relevant resource or coping strategy.
+  NORMAS DE SEGURIDAD CRÍTICAS:
+  1. Si detectas palabras como "suicidio", "matarme", "hacerme daño", "plan", "adiós" o desesperanza extrema, activa el campo isCrisis como true.
+  2. En caso de crisis, tu respuesta DEBE comenzar priorizando que el usuario busque ayuda humana inmediata y proporcionar el número 717 003 717 (España) o el 911.
+  3. NUNCA intentes dar un diagnóstico médico o psicológico.
+  4. Valida siempre los sentimientos del usuario ("Siento que estés pasando por esto", "Es válido sentirse así").
 
-  Respond in a modern, professional, and elegant tone, using colors Lila and whites.
+  Responde de forma concisa pero profunda.
 
-  User Query: {{{query}}}
+  Consulta del Usuario: {{{query}}}
   `,
   tools: [],
 });
