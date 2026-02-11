@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Calm sunset over a peaceful lake",
+      "imageUrl": "https://images.unsplash.com/photo-1619441207978-3d326c46e2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwZWFjZWZ1bCUyMG5hdHVyZXxlbnwwfHx8fDE3NzA3ODYxODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "peaceful nature"
+    },
+    {
+      "id": "youth-support",
+      "description": "Two teenagers sitting and talking supportively",
+      "imageUrl": "https://images.unsplash.com/photo-1758525861742-fef623c2ad2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZWVuYWdlcnMlMjBzdXBwb3J0fGVufDB8fHx8MTc3MDc4NjE4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teenagers support"
+    },
+    {
+      "id": "serenity",
+      "description": "Close up of lavender flowers in a field",
+      "imageUrl": "https://images.unsplash.com/photo-1688320545425-7658e7515c16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxsYXZlbmRlciUyMGZsb3dlcnN8ZW58MHx8fHwxNzcwNjk4NDAwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lavender flowers"
+    },
+    {
+      "id": "success-1",
+      "description": "Smiling teenager looking at the horizon",
+      "imageUrl": "https://images.unsplash.com/photo-1636017565800-8b63dcc07c3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxoYXBweSUyMHRlZW5hZ2VyfGVufDB8fHx8MTc3MDc4NjE4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy teenager"
+    },
+    {
+      "id": "success-2",
+      "description": "Teenager practicing art and feeling peaceful",
+      "imageUrl": "https://images.unsplash.com/photo-1598728633436-d518391e3fec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMHRlZW5hZ2VyfGVufDB8fHx8MTc3MDc4NjE4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative teenager"
+    },
+    {
+      "id": "success-3",
+      "description": "Group of friends laughing together",
+      "imageUrl": "https://images.unsplash.com/photo-1466358233012-14413ad4e76f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0ZWVuYWdlcnMlMjBmcmllbmRzfGVufDB8fHx8MTc3MDc4NjE4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "teenagers friends"
+    }
+  ]
 }
