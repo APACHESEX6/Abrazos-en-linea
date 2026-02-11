@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -69,23 +70,27 @@ export function Hero() {
         </div>
 
         <div className="relative animate-fade-up [animation-delay:200ms]">
-          <div className="relative z-10 rounded-[3.5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] bg-white p-4 animate-float">
-            <div className="rounded-[2.5rem] overflow-hidden">
-              {heroImg && (
-                <Image 
-                  src={heroImg.imageUrl}
-                  alt={heroImg.description}
-                  width={800}
-                  height={600}
-                  className="w-full object-cover scale-110 hover:scale-100 transition-transform duration-1000"
-                  data-ai-hint={heroImg.imageHint}
-                  priority
-                />
-              )}
+          {/* Main Card Container WITHOUT overflow-hidden to allow children cards to overflow */}
+          <div className="relative z-10 animate-float">
+             {/* Actual Image Box with clipping */}
+            <div className="rounded-[3.5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] bg-white p-4">
+              <div className="rounded-[2.5rem] overflow-hidden">
+                {heroImg && (
+                  <Image 
+                    src={heroImg.imageUrl}
+                    alt={heroImg.description}
+                    width={800}
+                    height={600}
+                    className="w-full object-cover scale-110 hover:scale-100 transition-transform duration-1000"
+                    data-ai-hint={heroImg.imageHint}
+                    priority
+                  />
+                )}
+              </div>
             </div>
-            
-            {/* Contextual Floating UI */}
-            <div className="absolute top-12 -left-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4">
+
+            {/* Contextual Floating UI - Now outside the clipping box */}
+            <div className="absolute top-12 -left-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 border border-primary/10">
               <div className="bg-primary/20 p-3 rounded-2xl">
                 <Heart className="w-6 h-6 text-primary fill-primary/40" />
               </div>
@@ -95,15 +100,13 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2s] z-20 hidden md:block border-primary/10">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                  <ShieldCheck className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                   <p className="text-sm font-bold text-foreground">Espacio Seguro</p>
-                   <p className="text-xs text-muted-foreground">Privacidad garantizada</p>
-                </div>
+            <div className="absolute -bottom-8 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2s] z-20 hidden md:flex items-center gap-4 border border-primary/10">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                <ShieldCheck className="w-6 h-6 text-green-600" />
+              </div>
+              <div>
+                 <p className="text-sm font-bold text-foreground text-nowrap">Espacio Seguro</p>
+                 <p className="text-xs text-muted-foreground text-nowrap">Privacidad garantizada</p>
               </div>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MessageSquareQuote, Users2 } from 'lucide-react';
+import { MessageSquare, Quote, Users2 } from 'lucide-react';
 
 const questions = [
   {
@@ -47,13 +47,13 @@ export function ExpertQA() {
           <div className="md:w-2/3 w-full">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {questions.map((item, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`} className="border border-primary/10 rounded-2xl px-6 bg-secondary/5">
+                <AccordionItem key={idx} value={`item-${idx}`} className="border border-primary/10 rounded-2xl px-6 bg-secondary/5 overflow-hidden">
                   <AccordionTrigger className="hover:no-underline font-headline text-lg text-left py-6">
                     {item.q}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
                     <div className="flex gap-3">
-                      <MessageSquareQuote className="w-5 h-5 text-primary shrink-0" />
+                      <Quote className="w-5 h-5 text-primary shrink-0 rotate-180" />
                       {item.a}
                     </div>
                   </AccordionContent>
