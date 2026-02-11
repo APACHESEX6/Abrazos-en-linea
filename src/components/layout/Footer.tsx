@@ -18,7 +18,7 @@ export function Footer() {
           <Link href="/" className="flex items-center gap-2 group">
             <Heart className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
             <span className="text-2xl font-headline font-bold text-foreground">
-              Abrazos<span className="text-primary">Digitales</span>
+              Abrazos<span className="text-primary"> en línea</span>
             </span>
           </Link>
           <p className="text-muted-foreground max-w-sm leading-relaxed font-medium">
@@ -58,7 +58,7 @@ export function Footer() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-12 pt-8 border-t border-primary/5 text-center text-sm text-muted-foreground font-medium">
-        <p>© {year || 2025} Abrazos Digitales. Hecho con amor y esperanza.</p>
+        <p>© {year || 2025} Abrazos en línea. Hecho con amor y esperanza.</p>
       </div>
     </footer>
   );

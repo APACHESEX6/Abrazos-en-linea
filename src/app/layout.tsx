@@ -1,9 +1,8 @@
-
 import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Abrazos Digitales - Prevención del Suicidio Adolescente',
+  title: 'Abrazos en línea - Prevención del Suicidio Adolescente',
   description: 'Un espacio seguro de apoyo, información y esperanza para jóvenes.',
 };
 

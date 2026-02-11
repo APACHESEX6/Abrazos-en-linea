@@ -87,7 +87,7 @@ export function Navbar() {
             <Heart className="w-6 h-6 text-white fill-white/20" />
           </div>
           <span className="text-2xl font-headline font-bold tracking-tight text-foreground">
-            Abrazos<span className="text-primary">Digitales</span>
+            Abrazos<span className="text-primary"> en línea</span>
           </span>
         </Link>
 
