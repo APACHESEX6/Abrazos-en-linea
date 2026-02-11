@@ -25,10 +25,10 @@ export function Hero() {
             <span className="text-xs font-bold text-primary tracking-wide uppercase">Espacio 100% Confidencial</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-[0.95] tracking-tighter text-foreground">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-[1.1] tracking-tight text-foreground">
             Tu historia <br />
             aún tiene <br />
-            <span className="text-gradient italic">mucho amor</span>
+            <span className="text-gradient italic pr-4">mucho amor</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-lg leading-relaxed font-medium">
@@ -60,8 +60,8 @@ export function Hero() {
 
         <div className="relative animate-fade-up [animation-delay:200ms] hidden lg:block">
           <div className="relative z-10 h-full flex items-center justify-center">
-            {/* Contenedor de Imagen Proporcional y Ajustado */}
-            <div className="relative w-full max-w-[550px] rounded-[4rem] overflow-hidden shadow-[0_48px_96px_-24px_rgba(0,0,0,0.12)] bg-white p-3 border border-primary/5 animate-float">
+            {/* Contenedor de Imagen Proporcional - Se quita overflow-hidden para las burbujas */}
+            <div className="relative w-full max-w-[550px] rounded-[4rem] shadow-[0_48px_96px_-24px_rgba(0,0,0,0.12)] bg-white p-3 border border-primary/5 animate-float">
               <div className="rounded-[3.2rem] overflow-hidden aspect-[6/5] relative">
                 {heroImg && (
                   <Image 
@@ -74,26 +74,26 @@ export function Hero() {
                   />
                 )}
               </div>
-            </div>
 
-            {/* Burbujas Flotantes con Tamaños Ajustados */}
-            <div className="absolute top-8 -left-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 shadow-xl border border-white/40">
-              <div className="bg-primary/15 p-3 rounded-2xl">
-                <Heart className="w-6 h-6 text-primary fill-primary/40" />
+              {/* Burbujas Flotantes - Ahora por fuera del contenedor de imagen principal */}
+              <div className="absolute top-8 -left-12 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 shadow-xl border border-white/40">
+                <div className="bg-primary/15 p-3 rounded-2xl">
+                  <Heart className="w-6 h-6 text-primary fill-primary/40" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
+                  <p className="font-bold text-lg text-foreground">Estamos contigo</p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
-                <p className="font-bold text-lg text-foreground">Estamos contigo</p>
-              </div>
-            </div>
 
-            <div className="absolute bottom-8 -right-6 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-4 shadow-xl border border-white/40">
-              <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center shadow-inner">
-                <ShieldCheck className="w-7 h-7 text-green-600" />
-              </div>
-              <div>
-                 <p className="font-bold text-lg text-foreground">Espacio Seguro</p>
-                 <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Privacidad total</p>
+              <div className="absolute bottom-12 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-4 shadow-xl border border-white/40">
+                <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center shadow-inner">
+                  <ShieldCheck className="w-7 h-7 text-green-600" />
+                </div>
+                <div>
+                   <p className="font-bold text-lg text-foreground">Espacio Seguro</p>
+                   <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Privacidad total</p>
+                </div>
               </div>
             </div>
           </div>
