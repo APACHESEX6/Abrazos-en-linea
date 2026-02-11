@@ -1,0 +1,41 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Calm sunset over a peaceful lake",
+      "imageUrl": "https://picsum.photos/seed/abrazos-hero/1200/800",
+      "imageHint": "peaceful nature"
+    },
+    {
+      "id": "youth-support",
+      "description": "Two teenagers sitting and talking supportively",
+      "imageUrl": "https://picsum.photos/seed/youth-talk/600/400",
+      "imageHint": "teenagers support"
+    },
+    {
+      "id": "serenity",
+      "description": "Close up of lavender flowers in a field",
+      "imageUrl": "https://picsum.photos/seed/lavender-field/600/400",
+      "imageHint": "lavender flowers"
+    },
+    {
+      "id": "success-1",
+      "description": "Smiling teenager looking at the horizon",
+      "imageUrl": "https://picsum.photos/seed/success1/400/400",
+      "imageHint": "happy teenager"
+    },
+    {
+      "id": "success-2",
+      "description": "Teenager practicing art and feeling peaceful",
+      "imageUrl": "https://picsum.photos/seed/success2/400/400",
+      "imageHint": "creative teenager"
+    },
+    {
+      "id": "success-3",
+      "description": "Group of friends laughing together",
+      "imageUrl": "https://picsum.photos/seed/success3/400/400",
+      "imageHint": "teenagers friends"
+    }
+  ]
+}
