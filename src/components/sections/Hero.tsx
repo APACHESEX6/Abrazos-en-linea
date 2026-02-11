@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ChevronRight, ShieldCheck, Sparkles, Heart, MousePointer2 } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Heart, MousePointer2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export function Hero() {
@@ -14,54 +14,54 @@ export function Hero() {
     <section id="inicio" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-background">
       {/* Luces de fondo (Orbs) */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,121,255,0.08),transparent_70%)]" />
-      <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse-soft" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-0 right-[-5%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] -z-10 animate-pulse-soft" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent/20 rounded-full blur-[150px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
-        <div className="space-y-8 animate-fade-up">
-          <div className="inline-flex items-center gap-3 bg-white/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-primary/20 shadow-sm animate-fade-in">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-primary animate-ping" />
-            <span className="text-xs font-bold text-primary tracking-wide">Espacio 100% Confidencial</span>
+        <div className="space-y-10 animate-fade-up">
+          <div className="inline-flex items-center gap-3 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-primary/20 shadow-sm animate-fade-in">
+            <span className="flex h-3 w-3 rounded-full bg-primary animate-ping" />
+            <span className="text-sm font-bold text-primary tracking-wide">Espacio 100% Confidencial</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-[1.05] tracking-tight text-foreground">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-headline font-bold leading-[0.95] tracking-tighter text-foreground">
             Tu historia <br />
             aún tiene <br />
-            <span className="text-gradient italic">muchas páginas</span>
+            <span className="text-gradient italic">mucho amor</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-xl leading-relaxed font-medium">
-            No tienes que cargar con todo tú solo. <span className="text-primary font-bold">Abrazos en línea</span> es un refugio diseñado por expertos para acompañarte en los días grises.
+          <p className="text-2xl md:text-3xl text-muted-foreground max-w-xl leading-relaxed font-medium">
+            No tienes que cargar con todo tú solo. <span className="text-primary font-bold">Abrazos en línea</span> es un refugio diseñado para acompañarte en tus días más difíciles.
           </p>
 
-          <div className="flex flex-wrap gap-5 pt-4">
-            <Button size="lg" className="rounded-full shadow-2xl shadow-primary/30 h-16 px-10 group bg-primary hover:bg-primary/90 text-white border-none text-lg font-bold transition-all hover:scale-105" asChild>
+          <div className="flex flex-wrap gap-6 pt-6">
+            <Button size="lg" className="rounded-full shadow-2xl shadow-primary/30 h-20 px-12 group bg-primary hover:bg-primary/90 text-white border-none text-xl font-bold transition-all hover:scale-105" asChild>
               <Link href="#recursos">
-                Explorar Recursos
-                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                Explorar Ayuda
+                <ChevronRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full h-16 px-10 border-primary/20 bg-white/50 backdrop-blur-md hover:bg-white hover:border-primary transition-all text-lg font-bold group" asChild>
+            <Button size="lg" variant="outline" className="rounded-full h-20 px-12 border-primary/20 bg-white/50 backdrop-blur-md hover:bg-white hover:border-primary transition-all text-xl font-bold group" asChild>
               <Link href="#historias">
-                <Sparkles className="w-5 h-5 mr-2 text-primary group-hover:rotate-12 transition-transform" />
-                Ver Historias
+                <Sparkles className="w-6 h-6 mr-2 text-primary group-hover:rotate-12 transition-transform" />
+                Historias
               </Link>
             </Button>
           </div>
 
-          <div className="flex items-center gap-4 pt-4 text-muted-foreground/60 animate-fade-in [animation-delay:400ms]">
-            <p className="text-sm font-semibold italic flex items-center gap-2">
-              <MousePointer2 className="w-4 h-4" />
-              Únete a otros jóvenes buscando esperanza y apoyo profesional
+          <div className="flex items-center gap-4 pt-6 text-muted-foreground/60 animate-fade-in [animation-delay:400ms]">
+            <p className="text-base font-semibold italic flex items-center gap-3">
+              <MousePointer2 className="w-5 h-5" />
+              Un lugar seguro para jóvenes buscando esperanza y apoyo
             </p>
           </div>
         </div>
 
         <div className="relative animate-fade-up [animation-delay:200ms] hidden lg:block h-full">
           <div className="relative z-10 h-full flex items-center justify-center">
-            {/* Imagen Principal con Estilo Profesional */}
-            <div className="relative rounded-[4rem] overflow-hidden shadow-[0_48px_96px_-24px_rgba(0,0,0,0.12)] bg-white p-4 border border-primary/5 animate-float">
-              <div className="rounded-[3rem] overflow-hidden w-[550px] h-[450px] relative">
+            {/* Imagen Principal */}
+            <div className="relative rounded-[5rem] overflow-hidden shadow-[0_64px_128px_-32px_rgba(0,0,0,0.15)] bg-white p-5 border border-primary/5 animate-float">
+              <div className="rounded-[4rem] overflow-hidden w-[600px] h-[500px] relative">
                 {heroImg && (
                   <Image 
                     src={heroImg.imageUrl}
@@ -76,23 +76,23 @@ export function Hero() {
             </div>
 
             {/* Burbujas Flotantes */}
-            <div className="absolute top-12 -left-12 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 shadow-2xl border border-white/40">
-              <div className="bg-primary/20 p-3 rounded-2xl">
-                <Heart className="w-6 h-6 text-primary fill-primary/40" />
+            <div className="absolute top-10 -left-16 glass-card p-8 rounded-[3rem] animate-float [animation-delay:1s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
+              <div className="bg-primary/20 p-4 rounded-2xl">
+                <Heart className="w-8 h-8 text-primary fill-primary/40" />
               </div>
               <div>
-                <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
-                <p className="font-bold text-lg text-foreground">Estamos contigo</p>
+                <p className="text-[12px] font-bold text-muted-foreground uppercase tracking-widest">Apoyo Activo</p>
+                <p className="font-bold text-xl text-foreground">Estamos contigo</p>
               </div>
             </div>
 
-            <div className="absolute bottom-12 -right-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-4 shadow-2xl border border-white/40">
-              <div className="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center shadow-inner">
-                <ShieldCheck className="w-6 h-6 text-green-600" />
+            <div className="absolute bottom-10 -right-12 glass-card p-8 rounded-[3rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
+              <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center shadow-inner">
+                <ShieldCheck className="w-8 h-8 text-green-600" />
               </div>
               <div>
-                 <p className="font-bold text-lg text-foreground">Espacio Seguro</p>
-                 <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Privacidad total</p>
+                 <p className="font-bold text-xl text-foreground">Espacio Seguro</p>
+                 <p className="text-[12px] text-muted-foreground uppercase tracking-wider">Privacidad total</p>
               </div>
             </div>
           </div>

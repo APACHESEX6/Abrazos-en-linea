@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Phone, Globe, MessageCircle, MapPin, LifeBuoy, Search, ExternalLink } from 'lucide-react';
+import { Phone, Globe, MessageCircle, MapPin, LifeBuoy, Search, ExternalLink, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -12,114 +12,136 @@ const resources = [
     type: "Internacional",
     contact: "717 003 717",
     link: "tel:717003717",
-    description: "Servicio gratuito de escucha y orientación en situaciones de crisis emocional.",
+    description: "Servicio gratuito de escucha y orientación en situaciones de crisis emocional y prevención del suicidio.",
     icon: Phone,
-    color: "bg-blue-50 text-blue-600"
+    color: "bg-blue-50 text-blue-600",
+    tags: ["españa", "crisis", "llamada"]
   },
   {
     title: "Fundación ANAR",
     type: "Ayuda a Niños y Adolescentes",
     contact: "900 20 20 10",
     link: "tel:900202010",
-    description: "Ayuda psicológica, jurídica y social para menores en situaciones de riesgo.",
+    description: "Ayuda psicológica, jurídica y social para menores en situaciones de riesgo en España.",
     icon: MessageCircle,
-    color: "bg-green-50 text-green-600"
+    color: "bg-green-50 text-green-600",
+    tags: ["niños", "jóvenes", "violencia"]
   },
   {
     title: "Línea 024",
     type: "Nacional (España)",
     contact: "024",
     link: "tel:024",
-    description: "Línea oficial de atención a la conducta suicida. Gratuita y disponible 24/7.",
+    description: "Línea oficial del Ministerio de Sanidad de atención a la conducta suicida. Gratuita y 24/7.",
     icon: Phone,
-    color: "bg-purple-50 text-purple-600"
+    color: "bg-purple-50 text-purple-600",
+    tags: ["gobierno", "salud", "suicidio"]
   },
   {
     title: "Papageno",
     type: "Asociación Prevención",
     contact: "papageno.es",
     link: "https://papageno.es",
-    description: "Plataforma de profesionales dedicada a la prevención del suicidio.",
+    description: "Plataforma de profesionales dedicada a la prevención del suicidio y apoyo a supervivientes.",
     icon: Globe,
-    color: "bg-amber-50 text-amber-600"
+    color: "bg-amber-50 text-amber-600",
+    tags: ["web", "profesionales", "educación"]
   },
   {
     title: "Localizador de Ayuda",
     type: "Herramienta",
-    contact: "Ver Mapa",
-    link: "#",
-    description: "Encuentra el centro de salud mental público más cercano a tu ubicación actual.",
+    contact: "Ver Mapa Público",
+    link: "https://www.sanidad.gob.es/organizacion/sns/planCalidadSNS/pdf/guia_centros_salud_mental.pdf",
+    description: "Encuentra el centro de salud mental público más cercano a tu ubicación para atención médica.",
     icon: MapPin,
-    color: "bg-rose-50 text-rose-600"
+    color: "bg-rose-50 text-rose-600",
+    tags: ["mapa", "presencial", "hospital"]
   },
   {
-    title: "Chat de Crisis",
+    title: "Chat de Crisis ANAR",
     type: "Digital",
-    contact: "Iniciar Chat",
-    link: "#ai-support",
-    description: "Utiliza nuestra IA o conecta con servicios de chat de texto para jóvenes.",
+    contact: "Chat Online",
+    link: "https://www.anar.org/chat-anar/",
+    description: "Servicio de chat anónimo y confidencial para jóvenes que prefieren escribir en lugar de hablar.",
     icon: MessageCircle,
-    color: "bg-cyan-50 text-cyan-600"
+    color: "bg-cyan-50 text-cyan-600",
+    tags: ["chat", "texto", "anónimo"]
   }
 ];
 
 export function Resources() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredResources = resources.filter(res => 
-    res.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    res.type.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredResources = useMemo(() => {
+    const term = searchTerm.toLowerCase().trim();
+    if (!term) return resources;
+
+    return resources.filter(res => 
+      res.title.toLowerCase().includes(term) ||
+      res.type.toLowerCase().includes(term) ||
+      res.description.toLowerCase().includes(term) ||
+      res.tags.some(tag => tag.includes(term))
+    );
+  }, [searchTerm]);
 
   return (
     <section id="recursos" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="bg-secondary/20 rounded-[4rem] p-10 md:p-20 relative overflow-hidden border border-primary/5">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+        <div className="bg-secondary/20 rounded-[4rem] p-10 md:p-24 relative overflow-hidden border border-primary/5">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2" />
           
-          <div className="relative z-10 max-w-3xl mx-auto text-center mb-20 space-y-8">
+          <div className="relative z-10 max-w-3xl mx-auto text-center mb-24 space-y-8">
             <div className="flex justify-center">
-              <div className="bg-white p-5 rounded-[2rem] shadow-sm animate-bounce">
-                <LifeBuoy className="w-12 h-12 text-primary" />
+              <div className="bg-white p-6 rounded-[2.5rem] shadow-sm animate-bounce">
+                <LifeBuoy className="w-14 h-14 text-primary" />
               </div>
             </div>
-            <h2 className="text-5xl md:text-7xl font-headline font-bold text-foreground">Directorio de Recursos</h2>
-            <p className="text-xl text-muted-foreground font-medium leading-relaxed">
-              No importa dónde estés, siempre hay una mano tendida. Todos estos servicios son gratuitos, profesionales y anónimos.
+            <h2 className="text-6xl md:text-8xl font-headline font-bold text-foreground">Directorio de Ayuda</h2>
+            <p className="text-2xl text-muted-foreground font-medium leading-relaxed">
+              En <span className="text-primary font-bold">Abrazos en línea</span> creemos que siempre hay una salida. 
+              Busca recursos gratuitos, profesionales y anónimos cerca de ti.
             </p>
             
-            <div className="relative max-w-md mx-auto mt-10">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+            <div className="relative max-w-xl mx-auto mt-12 group">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary w-6 h-6 transition-colors" />
               <Input 
-                placeholder="Busca por país o tipo de ayuda..."
-                className="pl-14 h-16 rounded-[2rem] bg-white border-primary/10 text-lg shadow-sm focus:ring-primary/20"
+                placeholder="Busca por país, chat, teléfono..."
+                className="pl-16 pr-14 h-20 rounded-[2.5rem] bg-white border-primary/10 text-xl shadow-xl focus:ring-primary/20 transition-all"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
+              {searchTerm && (
+                <button 
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-6 top-1/2 -translate-y-1/2 p-2 hover:bg-secondary rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 text-muted-foreground" />
+                </button>
+              )}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
             {filteredResources.map((res, idx) => (
-              <Card key={idx} className="border-none shadow-[0_24px_48px_-12px_rgba(0,0,0,0.05)] rounded-[2.5rem] bg-white hover:-translate-y-3 transition-all duration-500 group overflow-hidden">
-                <CardHeader className="p-8 pb-4">
-                  <div className={`${res.color} w-16 h-16 flex items-center justify-center rounded-[1.5rem] mb-6 shadow-sm group-hover:scale-110 transition-transform duration-500`}>
-                    <res.icon className="w-8 h-8" />
+              <Card key={idx} className="border-none shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] rounded-[3rem] bg-white hover:-translate-y-4 transition-all duration-500 group overflow-hidden">
+                <CardHeader className="p-10 pb-4">
+                  <div className={`${res.color} w-20 h-20 flex items-center justify-center rounded-[1.8rem] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500`}>
+                    <res.icon className="w-10 h-10" />
                   </div>
-                  <div className="space-y-2">
-                    <CardTitle className="font-headline text-2xl group-hover:text-primary transition-colors">{res.title}</CardTitle>
-                    <p className="text-xs font-black text-primary tracking-widest uppercase opacity-60">{res.type}</p>
+                  <div className="space-y-3">
+                    <CardTitle className="font-headline text-3xl group-hover:text-primary transition-colors">{res.title}</CardTitle>
+                    <p className="text-xs font-black text-primary tracking-[0.2em] uppercase opacity-60">{res.type}</p>
                   </div>
                 </CardHeader>
-                <CardContent className="p-8 pt-0 space-y-8">
-                  <p className="text-base text-muted-foreground leading-relaxed min-h-[4.5rem]">{res.description}</p>
-                  <div className="bg-secondary/50 p-6 rounded-3xl text-center border border-primary/5 group-hover:bg-primary/5 transition-colors">
-                    <p className="font-bold text-xl text-foreground/80">{res.contact}</p>
+                <CardContent className="p-10 pt-0 space-y-10">
+                  <p className="text-lg text-muted-foreground leading-relaxed min-h-[5rem]">{res.description}</p>
+                  <div className="bg-secondary/50 p-8 rounded-[2rem] text-center border border-primary/5 group-hover:bg-primary/5 transition-colors">
+                    <p className="font-bold text-2xl text-foreground/80">{res.contact}</p>
                   </div>
-                  <Button variant="outline" className="w-full rounded-2xl h-14 border-primary/20 text-lg font-bold group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all active:scale-95" asChild>
+                  <Button variant="outline" className="w-full rounded-[1.5rem] h-16 border-primary/20 text-xl font-bold group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all active:scale-95 shadow-sm" asChild>
                     <a href={res.link} target={res.link.startsWith('http') ? "_blank" : "_self"} rel="noopener noreferrer">
                       Conectar Ahora
-                      <ExternalLink className="w-5 h-5 ml-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink className="w-6 h-6 ml-3 opacity-40 group-hover:opacity-100 transition-opacity" />
                     </a>
                   </Button>
                 </CardContent>
@@ -128,8 +150,17 @@ export function Resources() {
           </div>
 
           {filteredResources.length === 0 && (
-            <div className="text-center py-20 animate-fade-in">
-              <p className="text-xl font-bold text-muted-foreground italic">No encontramos recursos con ese nombre, pero puedes probar buscando "España", "Teléfono" o "Digital".</p>
+            <div className="text-center py-32 animate-fade-in space-y-6">
+              <div className="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                <Search className="w-10 h-10 text-muted-foreground opacity-30" />
+              </div>
+              <p className="text-2xl font-bold text-muted-foreground italic max-w-lg mx-auto leading-relaxed">
+                No encontramos resultados para "{searchTerm}". <br />
+                Prueba con palabras como "chat", "españa" o "teléfono".
+              </p>
+              <Button variant="ghost" className="text-primary font-bold" onClick={() => setSearchTerm("")}>
+                Limpiar búsqueda
+              </Button>
             </div>
           )}
         </div>
