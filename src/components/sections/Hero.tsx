@@ -70,7 +70,7 @@ export function Hero() {
         </div>
 
         <div className="relative animate-fade-up [animation-delay:200ms]">
-          {/* Main Card Container WITHOUT overflow-hidden to allow children cards to overflow */}
+          {/* Main Card Container */}
           <div className="relative z-10 animate-float">
              {/* Actual Image Box with clipping */}
             <div className="rounded-[3.5rem] overflow-hidden shadow-[0_48px_96px_-16px_rgba(0,0,0,0.15)] bg-white p-4">
@@ -89,7 +89,7 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Contextual Floating UI - Now outside the clipping box */}
+            {/* Contextual Floating UI - Outside the image box */}
             <div className="absolute top-12 -left-8 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 border border-primary/10">
               <div className="bg-primary/20 p-3 rounded-2xl">
                 <Heart className="w-6 h-6 text-primary fill-primary/40" />
@@ -110,10 +110,6 @@ export function Hero() {
               </div>
             </div>
           </div>
-          
-          {/* Decorative Circles */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-primary/10 rounded-full -z-10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-primary/5 rounded-full -z-10" />
         </div>
       </div>
 
