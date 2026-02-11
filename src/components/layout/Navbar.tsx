@@ -23,18 +23,9 @@ const navItems = [
   { name: 'Recursos', href: '#recursos' },
 ];
 
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const CrisisModal = () => (
-    <DialogContent className="sm:max-w-md rounded-[2.5rem] border-none shadow-2xl">
+function CrisisModalContent() {
+  return (
+    <DialogContent className="sm:max-w-md rounded-[2.5rem] border-none shadow-2xl bg-white">
       <DialogHeader>
         <DialogTitle className="text-3xl font-headline font-bold text-destructive flex items-center gap-3">
           <ShieldAlert className="w-8 h-8" />
@@ -69,6 +60,21 @@ export function Navbar() {
       </div>
     </DialogContent>
   );
+}
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <nav className={cn(
@@ -103,13 +109,13 @@ export function Navbar() {
             <DialogTrigger asChild>
               <Button 
                 variant="destructive" 
-                className="rounded-full px-8 shadow-xl shadow-destructive/20 hover:shadow-primary/30 hover:bg-primary text-white border-none hover:scale-105 active:scale-95 transition-all duration-300 font-bold"
+                className="rounded-full px-8 shadow-xl shadow-destructive/20 hover:shadow-primary/30 hover:bg-primary text-white border-none hover:scale-105 active:scale-95 transition-all duration-300 font-bold group"
               >
                 <ShieldAlert className="w-4 h-4 mr-2" />
                 Ayuda Urgente
               </Button>
             </DialogTrigger>
-            <CrisisModal />
+            <CrisisModalContent />
           </Dialog>
         </div>
 
@@ -142,7 +148,7 @@ export function Navbar() {
                 Ayuda Urgente
               </Button>
             </DialogTrigger>
-            <CrisisModal />
+            <CrisisModalContent />
           </Dialog>
         </div>
       )}

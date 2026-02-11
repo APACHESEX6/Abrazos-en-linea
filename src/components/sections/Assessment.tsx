@@ -116,7 +116,7 @@ export function Assessment() {
               </div>
               
               <div className="space-y-6 max-w-3xl mx-auto">
-                <h3 className="text-5xl md:text-6xl font-headline font-bold">Gracias por tu honestidad</h3>
+                <h3 className="text-5xl md:text-6xl font-headline font-bold text-foreground">Gracias por tu honestidad</h3>
                 <p className="text-2xl text-muted-foreground font-medium leading-relaxed">
                   {positiveCount > 2 
                     ? "Tus respuestas sugieren que estás pasando por un momento de alta vulnerabilidad emocional. Lo más importante ahora es que no intentes llevar esto solo."
@@ -125,7 +125,7 @@ export function Assessment() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-2xl mx-auto pt-6">
-                <Button onClick={reset} variant="ghost" className="rounded-2xl h-16 px-8 text-lg font-bold hover:bg-primary/5">
+                <Button onClick={reset} variant="ghost" className="rounded-2xl h-16 px-8 text-lg font-bold hover:bg-primary/5 text-foreground">
                   <RefreshCw className="w-5 h-5 mr-3" />
                   Repetir Evaluación
                 </Button>
@@ -153,7 +153,7 @@ export function Assessment() {
                       </div>
                       <div className="space-y-3">
                         <AlertTitle className="font-bold text-2xl mb-1 text-destructive">Prioridad de Ayuda Humana</AlertTitle>
-                        <AlertDescription className="text-lg font-medium leading-relaxed opacity-80">
+                        <AlertDescription className="text-lg font-medium leading-relaxed opacity-80 text-foreground">
                           Recomendamos encarecidamente hablar con un profesional hoy mismo. Llama al 717 003 717. No estás solo.
                         </AlertDescription>
                       </div>
