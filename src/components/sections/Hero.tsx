@@ -1,4 +1,3 @@
-
 "use client"
 
 import React from 'react';
@@ -28,7 +27,7 @@ export function Hero() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-bold leading-[1.1] tracking-tight text-foreground">
             Tu historia <br />
             aún tiene <br />
-            <span className="text-gradient italic pr-4">mucho amor</span>
+            <span className="text-gradient italic pr-6 inline-block">mucho amor</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-lg leading-relaxed font-medium">
@@ -60,7 +59,7 @@ export function Hero() {
 
         <div className="relative animate-fade-up [animation-delay:200ms] hidden lg:block">
           <div className="relative z-10 h-full flex items-center justify-center">
-            {/* Contenedor de Imagen Proporcional - Se quita overflow-hidden para las burbujas */}
+            {/* Contenedor de Imagen Proporcional */}
             <div className="relative w-full max-w-[550px] rounded-[4rem] shadow-[0_48px_96px_-24px_rgba(0,0,0,0.12)] bg-white p-3 border border-primary/5 animate-float">
               <div className="rounded-[3.2rem] overflow-hidden aspect-[6/5] relative">
                 {heroImg && (
@@ -75,7 +74,7 @@ export function Hero() {
                 )}
               </div>
 
-              {/* Burbujas Flotantes - Ahora por fuera del contenedor de imagen principal */}
+              {/* Burbujas Flotantes Sobresaliendo */}
               <div className="absolute top-8 -left-12 glass-card p-6 rounded-[2.5rem] animate-float [animation-delay:1s] z-20 flex items-center gap-4 shadow-xl border border-white/40">
                 <div className="bg-primary/15 p-3 rounded-2xl">
                   <Heart className="w-6 h-6 text-primary fill-primary/40" />
