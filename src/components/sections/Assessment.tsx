@@ -1,20 +1,19 @@
-
 "use client"
 
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw } from 'lucide-react';
+import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw, Info } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 const questions = [
-  "¿Te has sentido triste o vacío la mayor parte del día recientemente?",
-  "¿Has perdido el interés en las cosas que antes disfrutabas mucho?",
-  "¿Sientes que no tienes esperanza sobre el futuro?",
-  "¿Has tenido pensamientos sobre lastimarte o sobre que el mundo estaría mejor sin ti?",
-  "¿Sientes que eres una carga para los demás?",
-  "¿Has tenido dificultades para dormir o dormir demasiado?"
+  "¿Sientes una tristeza profunda o vacío que parece no irse?",
+  "¿Has dejado de disfrutar actividades que antes amabas mucho?",
+  "¿Sientes que el futuro no tiene nada bueno para ofrecerte?",
+  "¿Has pensado que el mundo estaría mejor sin ti?",
+  "¿Sientes que eres una carga pesada para tus seres queridos?",
+  "¿Has notado cambios drásticos en tus ganas de comer o dormir?"
 ];
 
 export function Assessment() {
@@ -42,88 +41,93 @@ export function Assessment() {
   const progress = (step / questions.length) * 100;
 
   return (
-    <section id="test" className="py-24 bg-secondary/10">
+    <section id="test" className="py-32 bg-gradient-to-b from-white to-secondary/20">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
-        <Card className="overflow-hidden border-none shadow-xl bg-white rounded-3xl">
+        <Card className="overflow-hidden border-none shadow-[0_32px_128px_rgba(0,0,0,0.08)] bg-white rounded-[3rem] animate-reveal">
           {!showResult ? (
             <>
-              <CardHeader className="bg-primary/5 pb-8 pt-10">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-primary/20 p-2 rounded-lg text-primary">
-                    <BrainCircuit className="w-6 h-6" />
+              <CardHeader className="bg-primary/5 pb-10 pt-12 px-10 text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="bg-white p-4 rounded-[2rem] shadow-sm text-primary">
+                    <BrainCircuit className="w-10 h-10" />
                   </div>
-                  <CardTitle className="font-headline text-3xl">Auto-Evaluación de Bienestar</CardTitle>
                 </div>
-                <p className="text-muted-foreground italic">Este es un test orientativo, no sustituye un diagnóstico profesional.</p>
-                <div className="mt-6 space-y-2">
-                  <div className="flex justify-between text-xs font-medium text-primary">
-                    <span>Progreso</span>
+                <CardTitle className="font-headline text-4xl mb-3">Escucha a tu Interior</CardTitle>
+                <div className="flex items-center justify-center gap-2 text-muted-foreground font-medium">
+                   <Info className="w-4 h-4 text-primary" />
+                   <p className="text-sm">Evaluación orientativa confidencial.</p>
+                </div>
+                
+                <div className="mt-10 max-w-md mx-auto space-y-3">
+                  <div className="flex justify-between text-xs font-bold text-primary uppercase tracking-widest">
+                    <span>Pregunta {step + 1} de {questions.length}</span>
                     <span>{Math.round(progress)}%</span>
                   </div>
-                  <Progress value={progress} className="h-2 bg-primary/10" />
+                  <Progress value={progress} className="h-2.5 bg-primary/10 overflow-hidden rounded-full" />
                 </div>
               </CardHeader>
-              <CardContent className="py-12 px-8">
-                <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
-                  <h3 className="text-2xl font-medium text-center leading-snug">
-                    {questions[step]}
+              <CardContent className="py-20 px-10">
+                <div className="space-y-12 transition-all duration-500">
+                  <h3 className="text-3xl md:text-4xl font-headline font-bold text-center leading-tight max-w-2xl mx-auto animate-in fade-in zoom-in duration-500">
+                    "{questions[step]}"
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto">
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-md mx-auto">
                     <Button 
                       onClick={() => handleAnswer(true)}
                       size="lg" 
-                      className="rounded-full hover:scale-105 transition-transform"
+                      className="rounded-2xl h-16 flex-1 text-lg font-bold shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300"
                     >
-                      Sí
+                      Sí, lo siento
                     </Button>
                     <Button 
                       onClick={() => handleAnswer(false)}
                       variant="outline" 
                       size="lg" 
-                      className="rounded-full hover:scale-105 transition-transform"
+                      className="rounded-2xl h-16 flex-1 text-lg font-bold border-primary/20 hover:bg-secondary/5 transition-all duration-300"
                     >
-                      No
+                      No, ahora no
                     </Button>
                   </div>
                 </div>
               </CardContent>
             </>
           ) : (
-            <CardContent className="py-16 px-8 space-y-8 text-center animate-in zoom-in duration-500">
+            <CardContent className="py-24 px-10 space-y-10 text-center animate-in zoom-in-95 duration-700">
               <div className="flex justify-center">
-                <div className="bg-primary/20 p-6 rounded-full">
-                  <CheckCircle2 className="w-16 h-16 text-primary" />
+                <div className="bg-primary/20 p-8 rounded-[2.5rem] shadow-sm">
+                  <CheckCircle2 className="w-20 h-20 text-primary" />
                 </div>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-3xl font-headline font-bold">Evaluación Completada</h3>
-                <p className="text-lg text-muted-foreground">
+              <div className="space-y-6 max-w-2xl mx-auto">
+                <h3 className="text-4xl md:text-5xl font-headline font-bold">Hemos terminado</h3>
+                <p className="text-xl text-muted-foreground font-medium leading-relaxed">
                   {positiveCount > 2 
-                    ? "Hemos notado que estás pasando por un momento difícil. Es muy importante que hables con alguien ahora mismo."
-                    : "Parece que estás manejando bien tus emociones, pero recuerda que siempre está bien pedir apoyo si lo necesitas."}
+                    ? "Gracias por tu honestidad. Tus respuestas sugieren que estás pasando por un momento muy difícil. No tienes que hacerlo solo."
+                    : "Parece que estás manejando tus emociones, pero recuerda que siempre es válido buscar un hombro donde apoyarse si lo necesitas."}
                 </p>
               </div>
 
               {positiveCount > 2 && (
-                <Alert variant="destructive" className="text-left border-destructive/50 bg-destructive/5">
-                  <AlertTitle className="font-bold flex items-center gap-2">
-                    ¡Te escuchamos!
+                <Alert variant="destructive" className="text-left border-destructive/20 bg-destructive/5 p-8 rounded-[2rem] max-w-2xl mx-auto">
+                  <AlertTitle className="font-bold text-lg mb-2 flex items-center gap-3">
+                    <div className="w-2 h-2 bg-destructive rounded-full animate-ping" />
+                    ¡Tu bienestar es prioridad!
                   </AlertTitle>
-                  <AlertDescription>
-                    No estás solo. Por favor, considera usar nuestra línea de recursos abajo o hablar con un profesional inmediatamente. Tu vida es importante para nosotros.
+                  <AlertDescription className="text-base font-medium">
+                    Por favor, considera hablar con un profesional o un adulto de confianza ahora mismo. Tu vida es increíblemente valiosa para nosotros y para el mundo.
                   </AlertDescription>
                 </Alert>
               )}
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button onClick={reset} variant="ghost" className="rounded-full">
-                  <RefreshCw className="w-4 h-4 mr-2" />
-                  Repetir Test
+              <div className="flex flex-col sm:flex-row gap-5 justify-center pt-8">
+                <Button onClick={reset} variant="ghost" className="rounded-2xl h-14 font-bold hover:bg-primary/5">
+                  <RefreshCw className="w-5 h-5 mr-3" />
+                  Repetir Evaluación
                 </Button>
-                <Button className="rounded-full shadow-lg px-8" asChild>
+                <Button className="rounded-2xl shadow-2xl shadow-primary/20 h-14 px-10 font-bold bg-primary text-primary-foreground" asChild>
                   <a href="#recursos">
-                    Ver Recursos de Ayuda
-                    <ChevronRight className="w-4 h-4 ml-2" />
+                    Ver Canales de Ayuda
+                    <ChevronRight className="w-5 h-5 ml-2" />
                   </a>
                 </Button>
               </div>
