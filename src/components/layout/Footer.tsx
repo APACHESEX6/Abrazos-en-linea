@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Heart, Instagram, Twitter, Facebook } from 'lucide-react';
 import Link from 'next/link';
@@ -7,9 +8,11 @@ export function Footer() {
     <footer className="bg-white border-t border-primary/10 py-12">
       <div className="max-w-7xl mx-auto px-4 md:px-8 grid md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2 space-y-6">
-          <Link href="/" className="flex items-center gap-2">
-            <Heart className="w-6 h-6 text-primary" />
-            <span className="text-2xl font-headline font-bold text-foreground">Abrazos Digitales</span>
+          <Link href="/" className="flex items-center gap-2 group">
+            <Heart className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+            <span className="text-2xl font-headline font-bold text-foreground">
+              Abrazos<span className="text-primary">Digitales</span>
+            </span>
           </Link>
           <p className="text-muted-foreground max-w-sm leading-relaxed">
             Nuestra misión es brindar luz en los momentos de sombra. 

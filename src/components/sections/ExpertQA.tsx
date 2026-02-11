@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -30,15 +31,17 @@ const questions = [
 
 export function ExpertQA() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-4 md:px-8">
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/3 space-y-6">
-            <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl">
+            <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl shadow-sm">
               <Users2 className="w-8 h-8 text-primary" />
             </div>
-            <h2 className="text-4xl font-headline font-bold text-foreground">Consultas con Expertos</h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <h2 className="text-4xl font-headline font-bold text-foreground leading-tight">
+              Consultas con <span className="text-primary">Expertos</span>
+            </h2>
+            <p className="text-muted-foreground leading-relaxed font-medium">
               Resolvemos tus dudas más comunes con el apoyo de psicólogos especializados en juventud.
             </p>
           </div>
@@ -46,13 +49,13 @@ export function ExpertQA() {
           <div className="md:w-2/3 w-full">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {questions.map((item, idx) => (
-                <AccordionItem key={idx} value={`item-${idx}`} className="border border-primary/10 rounded-2xl px-6 bg-secondary/5 overflow-hidden">
+                <AccordionItem key={idx} value={`item-${idx}`} className="border border-primary/10 rounded-2xl px-6 bg-secondary/5 hover:bg-white transition-all duration-300 overflow-hidden shadow-sm">
                   <AccordionTrigger className="hover:no-underline font-headline text-lg text-left py-6 text-foreground">
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
-                    <div className="flex gap-3">
-                      <Quote className="w-5 h-5 text-primary shrink-0 rotate-180" />
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-base font-medium">
+                    <div className="flex gap-4">
+                      <Quote className="w-6 h-6 text-primary shrink-0 opacity-20" />
                       {item.a}
                     </div>
                   </AccordionContent>
