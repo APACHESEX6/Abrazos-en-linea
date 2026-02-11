@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw, Info, HeartHandshake } from 'lucide-react';
+import { BrainCircuit, CheckCircle2, ChevronRight, RefreshCw, Info, HeartHandshake, ShieldAlert } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import Link from 'next/link';
 
