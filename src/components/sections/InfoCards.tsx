@@ -88,44 +88,44 @@ const sections = [
 
 export function InfoCards() {
   return (
-    <section id="info" className="py-32 bg-white relative overflow-hidden">
+    <section id="info" className="py-20 md:py-32 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20 space-y-6 animate-reveal">
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20 space-y-4 md:space-y-6 animate-reveal">
           <div className="flex justify-center">
-            <div className="bg-primary/10 p-4 rounded-3xl shadow-sm">
-              <AlertCircle className="w-8 h-8 text-primary" />
+            <div className="bg-primary/10 p-3 md:p-4 rounded-2xl md:rounded-3xl shadow-sm">
+              <AlertCircle className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             </div>
           </div>
-          <h2 className="text-4xl md:text-6xl font-headline font-bold text-foreground leading-tight">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-headline font-bold text-foreground leading-tight">
             Conocimiento que <span className="text-primary">Salva Vidas</span>
           </h2>
-          <p className="text-xl text-muted-foreground font-medium">
+          <p className="text-lg md:text-xl text-muted-foreground font-medium">
             Entender lo que nos pasa es el primer paso para sanar. 
             Educarse es un acto de amor propio y hacia los demás.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {sections.map((section, idx) => (
             <Card key={idx} className={
               `border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] 
-              transition-all duration-500 bg-secondary/5 group rounded-[2.5rem] overflow-hidden
-              animate-reveal`
+              transition-all duration-500 bg-secondary/5 group rounded-2xl md:rounded-[2.5rem] overflow-hidden
+              animate-reveal flex flex-col`
             }>
-              <CardHeader className="space-y-6 p-8 pb-4">
-                <div className="bg-white w-14 h-14 flex items-center justify-center rounded-2xl shadow-sm group-hover:bg-primary transition-all duration-500 group-hover:rotate-12">
-                  <section.icon className="w-7 h-7 text-primary group-hover:text-white transition-colors" />
+              <CardHeader className="space-y-4 md:space-y-6 p-6 md:p-8 pb-4">
+                <div className="bg-white w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl md:rounded-2xl shadow-sm group-hover:bg-primary transition-all duration-500 group-hover:rotate-12">
+                  <section.icon className="w-6 h-6 md:w-7 md:h-7 text-primary group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                  <CardTitle className="font-headline text-3xl mb-3 text-foreground">{section.title}</CardTitle>
-                  <p className="text-base text-muted-foreground leading-relaxed font-medium">{section.description}</p>
+                  <CardTitle className="font-headline text-2xl md:text-3xl mb-2 md:mb-3 text-foreground">{section.title}</CardTitle>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed font-medium">{section.description}</p>
                 </div>
               </CardHeader>
-              <CardContent className="p-8 pt-0 flex flex-col h-full">
-                <ul className="space-y-4 mb-8 flex-1">
+              <CardContent className="p-6 md:p-8 pt-0 flex flex-col flex-1">
+                <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 flex-1">
                   {section.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-4 text-base font-medium text-foreground/80 group-hover:text-foreground transition-colors">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0 opacity-50 group-hover:opacity-100" />
+                    <li key={i} className="flex items-start gap-3 md:gap-4 text-sm md:text-base font-medium text-foreground/80 group-hover:text-foreground transition-colors">
+                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary mt-2 shrink-0 opacity-50 group-hover:opacity-100" />
                       {item}
                     </li>
                   ))}
@@ -133,38 +133,38 @@ export function InfoCards() {
                 
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="flex items-center text-primary font-bold text-sm cursor-pointer hover:underline gap-1 group/link w-fit">
+                    <button className="flex items-center text-primary font-bold text-xs md:text-sm cursor-pointer hover:underline gap-1 group/link w-fit">
                       Leer más <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-3xl rounded-[2.5rem] border-none shadow-2xl p-0 overflow-hidden">
-                    <div className="bg-primary p-12 text-white">
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className="bg-white/20 p-4 rounded-2xl backdrop-blur-md">
-                          <section.icon className="w-8 h-8 text-white" />
+                  <DialogContent className="max-w-[95vw] md:max-w-3xl rounded-2xl md:rounded-[2.5rem] border-none shadow-2xl p-0 overflow-hidden">
+                    <div className="bg-primary p-6 md:p-12 text-white">
+                      <div className="flex items-center gap-4 mb-4 md:mb-6">
+                        <div className="bg-white/20 p-3 md:p-4 rounded-xl md:rounded-2xl backdrop-blur-md">
+                          <section.icon className="w-6 h-6 md:w-8 md:h-8 text-white" />
                         </div>
-                        <DialogTitle className="text-4xl font-headline font-bold">{section.title}</DialogTitle>
+                        <DialogTitle className="text-2xl md:text-4xl font-headline font-bold">{section.title}</DialogTitle>
                       </div>
-                      <p className="text-xl font-medium opacity-90 leading-relaxed">
+                      <p className="text-base md:text-xl font-medium opacity-90 leading-relaxed">
                         {section.details.intro}
                       </p>
                     </div>
-                    <ScrollArea className="max-h-[60vh] p-12">
-                      <div className="space-y-12">
+                    <ScrollArea className="max-h-[60vh] md:max-h-[60vh] p-6 md:p-12">
+                      <div className="space-y-8 md:space-y-12">
                         {section.details.blocks.map((block, i) => (
-                          <div key={i} className="space-y-4">
-                            <h4 className="text-2xl font-bold text-foreground flex items-center gap-3">
-                              <CheckCircle2 className="w-6 h-6 text-primary" />
+                          <div key={i} className="space-y-3 md:space-y-4">
+                            <h4 className="text-xl md:text-2xl font-bold text-foreground flex items-center gap-3">
+                              <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                               {block.subtitle}
                             </h4>
-                            <p className="text-lg text-muted-foreground leading-relaxed">
+                            <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                               {block.content}
                             </p>
                           </div>
                         ))}
-                        <div className="bg-secondary/50 p-8 rounded-3xl border border-primary/10">
-                          <p className="text-sm font-bold text-primary uppercase tracking-widest mb-2">Recomendación profesional</p>
-                          <p className="text-base text-muted-foreground italic">
+                        <div className="bg-secondary/50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-primary/10">
+                          <p className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Recomendación profesional</p>
+                          <p className="text-sm md:text-base text-muted-foreground italic">
                             Si te identificas con estas señales o conoces a alguien en esta situación, no esperes. Hablar es el primer paso hacia la recuperación.
                           </p>
                         </div>
