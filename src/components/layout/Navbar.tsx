@@ -2,17 +2,25 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Heart, ShieldAlert } from 'lucide-react';
+import { Menu, X, Heart, ShieldAlert, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const navItems = [
   { name: 'Inicio', href: '#inicio' },
   { name: 'Información', href: '#info' },
-  { name: 'Auto-Evaluación', href: '#test' },
+  { name: 'Test', href: '#test' },
   { name: 'Historias', href: '#historias' },
+  { name: 'IA Apoyo', href: '#ai-support' },
   { name: 'Recursos', href: '#recursos' },
-  { name: 'Chat AI', href: '#ai-support' },
 ];
 
 export function Navbar() {
@@ -20,74 +28,119 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const CrisisModal = () => (
+    <DialogContent className="sm:max-w-md rounded-[2.5rem] border-none shadow-2xl">
+      <DialogHeader>
+        <DialogTitle className="text-3xl font-headline font-bold text-destructive flex items-center gap-3">
+          <ShieldAlert className="w-8 h-8" />
+          Ayuda Inmediata
+        </DialogTitle>
+        <DialogDescription className="text-lg font-medium leading-relaxed pt-2">
+          Si tú o alguien que conoces está en peligro, por favor utiliza estos recursos gratuitos y confidenciales. No estás solo.
+        </DialogDescription>
+      </DialogHeader>
+      <div className="grid gap-6 py-6">
+        <div className="bg-destructive/10 p-6 rounded-3xl flex items-center justify-between group hover:bg-destructive/20 transition-colors">
+          <div>
+            <p className="text-sm font-bold text-destructive uppercase tracking-widest">Emergencias</p>
+            <p className="text-3xl font-bold">911</p>
+          </div>
+          <Button size="icon" className="rounded-2xl bg-destructive hover:bg-destructive/90" asChild>
+            <a href="tel:911"><Phone className="w-5 h-5" /></a>
+          </Button>
+        </div>
+        <div className="bg-primary/10 p-6 rounded-3xl flex items-center justify-between group hover:bg-primary/20 transition-colors">
+          <div>
+            <p className="text-sm font-bold text-primary uppercase tracking-widest">Línea de la Esperanza</p>
+            <p className="text-2xl font-bold">717 003 717</p>
+          </div>
+          <Button size="icon" className="rounded-2xl bg-primary hover:bg-primary/90" asChild>
+            <a href="tel:717003717"><Phone className="w-5 h-5" /></a>
+          </Button>
+        </div>
+      </div>
+      <div className="text-center italic text-sm text-muted-foreground">
+        * Disponible las 24 horas, todos los días del año.
+      </div>
+    </DialogContent>
+  );
+
   return (
     <nav className={cn(
-      "fixed top-0 w-full z-50 transition-all duration-500 px-4 md:px-8 py-4",
-      scrolled ? "bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)]" : "bg-transparent"
+      "fixed top-0 w-full z-50 transition-all duration-700 px-4 md:px-8 py-4",
+      scrolled ? "bg-white/80 backdrop-blur-2xl shadow-sm translate-y-0" : "bg-transparent py-6"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary/20 p-2 rounded-xl group-hover:bg-primary/40 transition-all duration-300 group-hover:rotate-6">
-            <Heart className="w-6 h-6 text-primary-foreground fill-primary/20" />
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="bg-primary p-2.5 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-all duration-500">
+            <Heart className="w-6 h-6 text-white fill-white/20" />
           </div>
-          <span className="text-xl font-headline font-bold tracking-tight text-primary-foreground">
-            Abrazos Digitales
+          <span className="text-2xl font-headline font-bold tracking-tight text-foreground">
+            Abrazos<span className="text-primary">Digitales</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          <div className="flex gap-8 items-center">
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex gap-1 bg-secondary/30 p-1.5 rounded-2xl backdrop-blur-sm">
             {navItems.map((item) => (
               <Link 
                 key={item.name} 
                 href={item.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-all duration-300 relative group"
+                className="text-sm font-semibold px-4 py-2 rounded-xl text-foreground/70 hover:text-primary hover:bg-white transition-all duration-300"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
-          <Button variant="default" className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 font-bold bg-primary text-primary-foreground border-none">
-            <ShieldAlert className="w-4 h-4 mr-2" />
-            Ayuda Urgente
-          </Button>
+          
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="default" className="rounded-full px-8 shadow-xl shadow-destructive/20 hover:shadow-destructive/30 bg-destructive text-white border-none hover:scale-105 active:scale-95 transition-all font-bold">
+                <ShieldAlert className="w-4 h-4 mr-2" />
+                Ayuda Urgente
+              </Button>
+            </DialogTrigger>
+            <CrisisModal />
+          </Dialog>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-primary-foreground p-2 hover:bg-primary/10 rounded-lg transition-colors"
+          className="md:hidden text-foreground p-2 hover:bg-secondary rounded-2xl transition-colors"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-primary/10 p-6 flex flex-col gap-4 shadow-2xl md:hidden animate-in slide-in-from-top duration-500 rounded-b-3xl">
+        <div className="absolute top-full left-4 right-4 bg-white/95 backdrop-blur-3xl border border-primary/10 p-8 flex flex-col gap-4 shadow-3xl md:hidden animate-in slide-in-from-top-4 duration-500 rounded-[2.5rem] mt-4">
           {navItems.map((item) => (
             <Link 
               key={item.name} 
               href={item.href}
-              className="text-lg font-medium py-3 px-4 rounded-xl hover:bg-primary/5 transition-colors"
+              className="text-xl font-bold py-4 px-6 rounded-2xl hover:bg-primary/5 hover:text-primary transition-all"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
             </Link>
           ))}
-          <Button variant="default" className="w-full mt-4 rounded-full py-6 text-lg font-bold">
-            <ShieldAlert className="w-5 h-5 mr-2" />
-            Ayuda Urgente
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="default" className="w-full mt-6 rounded-2xl py-8 text-xl font-bold bg-destructive shadow-lg shadow-destructive/20">
+                <ShieldAlert className="w-6 h-6 mr-2" />
+                Ayuda Urgente
+              </Button>
+            </DialogTrigger>
+            <CrisisModal />
+          </Dialog>
         </div>
       )}
     </nav>
