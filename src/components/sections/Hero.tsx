@@ -1,3 +1,4 @@
+
 "use client"
 
 import React from 'react';
@@ -11,20 +12,20 @@ export function Hero() {
   const heroImg = PlaceHolderImages.find(img => img.id === 'hero-bg');
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-background">
-      {/* Luces de fondo (Orbs) */}
+    <section id="inicio" className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-background">
+      {/* Orbes de luz de fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(168,121,255,0.08),transparent_70%)]" />
-      <div className="absolute top-0 right-[-5%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] -z-10 animate-pulse-soft" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-accent/20 rounded-full blur-[150px] -z-10" />
+      <div className="absolute top-0 right-[-10%] w-[1000px] h-[1000px] bg-primary/10 rounded-full blur-[180px] -z-10 animate-pulse-soft" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[800px] h-[800px] bg-accent/20 rounded-full blur-[150px] -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
-        <div className="space-y-10 animate-fade-up">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-20 items-center relative z-10 w-full">
+        <div className="space-y-12 animate-fade-up">
           <div className="inline-flex items-center gap-3 bg-white/60 backdrop-blur-md px-6 py-3 rounded-full border border-primary/20 shadow-sm animate-fade-in">
             <span className="flex h-3 w-3 rounded-full bg-primary animate-ping" />
             <span className="text-sm font-bold text-primary tracking-wide">Espacio 100% Confidencial</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-headline font-bold leading-[0.95] tracking-tighter text-foreground">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-headline font-bold leading-[0.9] tracking-tighter text-foreground">
             Tu historia <br />
             aún tiene <br />
             <span className="text-gradient italic">mucho amor</span>
@@ -49,7 +50,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="flex items-center gap-4 pt-6 text-muted-foreground/60 animate-fade-in [animation-delay:400ms]">
+          <div className="flex items-center gap-4 pt-10 text-muted-foreground/60 animate-fade-in [animation-delay:400ms]">
             <p className="text-base font-semibold italic flex items-center gap-3">
               <MousePointer2 className="w-5 h-5" />
               Un lugar seguro para jóvenes buscando esperanza y apoyo
@@ -59,9 +60,9 @@ export function Hero() {
 
         <div className="relative animate-fade-up [animation-delay:200ms] hidden lg:block h-full">
           <div className="relative z-10 h-full flex items-center justify-center">
-            {/* Imagen Principal */}
-            <div className="relative rounded-[5rem] overflow-hidden shadow-[0_64px_128px_-32px_rgba(0,0,0,0.15)] bg-white p-5 border border-primary/5 animate-float">
-              <div className="rounded-[4rem] overflow-hidden w-[600px] h-[500px] relative">
+            {/* Contenedor de Imagen Proporcional */}
+            <div className="relative w-full max-w-[650px] rounded-[5rem] overflow-hidden shadow-[0_64px_128px_-32px_rgba(0,0,0,0.15)] bg-white p-4 border border-primary/5 animate-float">
+              <div className="rounded-[4rem] overflow-hidden aspect-[6/5] relative">
                 {heroImg && (
                   <Image 
                     src={heroImg.imageUrl}
@@ -76,7 +77,7 @@ export function Hero() {
             </div>
 
             {/* Burbujas Flotantes */}
-            <div className="absolute top-10 -left-16 glass-card p-8 rounded-[3rem] animate-float [animation-delay:1s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
+            <div className="absolute top-10 -left-12 glass-card p-8 rounded-[3rem] animate-float [animation-delay:1s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
               <div className="bg-primary/20 p-4 rounded-2xl">
                 <Heart className="w-8 h-8 text-primary fill-primary/40" />
               </div>
@@ -86,7 +87,7 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="absolute bottom-10 -right-12 glass-card p-8 rounded-[3rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
+            <div className="absolute bottom-10 -right-10 glass-card p-8 rounded-[3rem] animate-float [animation-delay:2.5s] z-20 flex items-center gap-5 shadow-2xl border border-white/40">
               <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center shadow-inner">
                 <ShieldCheck className="w-8 h-8 text-green-600" />
               </div>
