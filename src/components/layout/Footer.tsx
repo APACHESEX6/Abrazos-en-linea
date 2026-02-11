@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Heart, Instagram, Twitter, Facebook } from 'lucide-react';
 import Link from 'next/link';
@@ -10,7 +9,7 @@ export function Footer() {
         <div className="col-span-1 md:col-span-2 space-y-6">
           <Link href="/" className="flex items-center gap-2">
             <Heart className="w-6 h-6 text-primary" />
-            <span className="text-2xl font-headline font-bold text-primary-foreground">Abrazos Digitales</span>
+            <span className="text-2xl font-headline font-bold text-foreground">Abrazos Digitales</span>
           </Link>
           <p className="text-muted-foreground max-w-sm leading-relaxed">
             Nuestra misión es brindar luz en los momentos de sombra. 
@@ -30,7 +29,7 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <h4 className="font-bold text-lg">Navegación</h4>
+          <h4 className="font-bold text-lg text-foreground">Navegación</h4>
           <ul className="space-y-2 text-muted-foreground">
             <li><Link href="#info" className="hover:text-primary transition-colors">Información</Link></li>
             <li><Link href="#test" className="hover:text-primary transition-colors">Evaluación</Link></li>
@@ -40,7 +39,7 @@ export function Footer() {
         </div>
 
         <div className="space-y-4">
-          <h4 className="font-bold text-lg">Legal</h4>
+          <h4 className="font-bold text-lg text-foreground">Legal</h4>
           <ul className="space-y-2 text-muted-foreground">
             <li>Privacidad</li>
             <li>Términos de uso</li>

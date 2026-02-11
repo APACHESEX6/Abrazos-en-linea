@@ -1,4 +1,3 @@
-
 "use client"
 
 import React from 'react';
@@ -8,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MessageSquare, Quote, Users2 } from 'lucide-react';
+import { Quote, Users2 } from 'lucide-react';
 
 const questions = [
   {
@@ -38,7 +37,7 @@ export function ExpertQA() {
             <div className="bg-primary/10 w-16 h-16 flex items-center justify-center rounded-2xl">
               <Users2 className="w-8 h-8 text-primary" />
             </div>
-            <h2 className="text-4xl font-headline font-bold text-primary-foreground">Consultas con Expertos</h2>
+            <h2 className="text-4xl font-headline font-bold text-foreground">Consultas con Expertos</h2>
             <p className="text-muted-foreground leading-relaxed">
               Resolvemos tus dudas más comunes con el apoyo de psicólogos especializados en juventud.
             </p>
@@ -48,7 +47,7 @@ export function ExpertQA() {
             <Accordion type="single" collapsible className="w-full space-y-4">
               {questions.map((item, idx) => (
                 <AccordionItem key={idx} value={`item-${idx}`} className="border border-primary/10 rounded-2xl px-6 bg-secondary/5 overflow-hidden">
-                  <AccordionTrigger className="hover:no-underline font-headline text-lg text-left py-6">
+                  <AccordionTrigger className="hover:no-underline font-headline text-lg text-left py-6 text-foreground">
                     {item.q}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed pb-6">

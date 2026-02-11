@@ -101,7 +101,10 @@ export function Navbar() {
           
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="default" className="rounded-full px-8 shadow-xl shadow-destructive/20 hover:shadow-destructive/30 bg-destructive text-white border-none hover:scale-105 active:scale-95 transition-all font-bold">
+              <Button 
+                variant="destructive" 
+                className="rounded-full px-8 shadow-xl shadow-destructive/20 hover:shadow-primary/30 hover:bg-primary text-white border-none hover:scale-105 active:scale-95 transition-all duration-300 font-bold"
+              >
                 <ShieldAlert className="w-4 h-4 mr-2" />
                 Ayuda Urgente
               </Button>
@@ -134,7 +137,7 @@ export function Navbar() {
           ))}
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="default" className="w-full mt-6 rounded-2xl py-8 text-xl font-bold bg-destructive shadow-lg shadow-destructive/20">
+              <Button variant="destructive" className="w-full mt-6 rounded-2xl py-8 text-xl font-bold bg-destructive shadow-lg shadow-destructive/20">
                 <ShieldAlert className="w-6 h-6 mr-2" />
                 Ayuda Urgente
               </Button>
