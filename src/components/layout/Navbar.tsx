@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Heart, ShieldAlert, Phone } from 'lucide-react';
+import { Menu, X, Heart, ShieldAlert, Phone, LogIn, UserPlus, LayoutDashboard, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,6 +14,8 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useAuth } from '@/lib/auth-context';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: 'Inicio', href: '#inicio' },
@@ -67,6 +69,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const { user, profile, logout } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -74,6 +78,12 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/');
+    setIsOpen(false);
+  };
 
   if (!mounted) return null;
 
@@ -106,6 +116,51 @@ export function Navbar() {
             ))}
           </div>
           
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                className="rounded-full px-5 border-primary/20 font-bold hover:bg-primary/5 hover:border-primary transition-all"
+                asChild
+              >
+                <Link href="/dashboard">
+                  <LayoutDashboard className="w-4 h-4 mr-2" />
+                  Mi Panel
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className="rounded-full px-5 font-bold text-muted-foreground hover:text-destructive transition-all"
+                onClick={handleLogout}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Salir
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                className="rounded-full px-5 border-primary/20 font-bold hover:bg-primary/5 hover:border-primary transition-all"
+                asChild
+              >
+                <Link href="/login">
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Ingresar
+                </Link>
+              </Button>
+              <Button
+                className="rounded-full px-6 shadow-lg shadow-primary/20 font-bold hover:scale-105 active:scale-95 transition-all"
+                asChild
+              >
+                <Link href="/registro">
+                  <UserPlus className="w-4 h-4 mr-2" />
+                  Registrarse
+                </Link>
+              </Button>
+            </div>
+          )}
+
           <Dialog>
             <DialogTrigger asChild>
               <Button 
@@ -142,9 +197,38 @@ export function Navbar() {
               {item.name}
             </Link>
           ))}
+
+          {user ? (
+            <>
+              <Link href="/dashboard" onClick={() => setIsOpen(false)}
+                className="flex items-center gap-3 text-xl font-bold py-4 px-6 rounded-2xl bg-primary/5 text-primary"
+              >
+                <LayoutDashboard className="w-5 h-5" /> Mi Panel
+              </Link>
+              <button onClick={handleLogout}
+                className="flex items-center gap-3 text-xl font-bold py-4 px-6 rounded-2xl text-destructive hover:bg-destructive/5 transition-all text-left"
+              >
+                <LogOut className="w-5 h-5" /> Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <div className="grid grid-cols-2 gap-3 mt-2">
+              <Link href="/login" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" className="w-full rounded-2xl py-6 text-base font-bold border-primary/20">
+                  <LogIn className="w-4 h-4 mr-2" /> Ingresar
+                </Button>
+              </Link>
+              <Link href="/registro" onClick={() => setIsOpen(false)}>
+                <Button className="w-full rounded-2xl py-6 text-base font-bold shadow-lg shadow-primary/20">
+                  <UserPlus className="w-4 h-4 mr-2" /> Registrarse
+                </Button>
+              </Link>
+            </div>
+          )}
+
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant="destructive" className="w-full mt-6 rounded-2xl py-8 text-xl font-bold bg-destructive shadow-lg shadow-destructive/20">
+              <Button variant="destructive" className="w-full mt-2 rounded-2xl py-8 text-xl font-bold bg-destructive shadow-lg shadow-destructive/20">
                 <ShieldAlert className="w-6 h-6 mr-2" />
                 Ayuda Urgente
               </Button>
