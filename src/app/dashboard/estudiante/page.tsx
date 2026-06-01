@@ -195,7 +195,8 @@ export default function EstudianteDashboard() {
   const resetCop = () => { setCopStep(0); setCopAnswers([]); setCopResult(false); };
   const copScore = copeAnswers.reduce((acc, ans, i) => {
     const q = copingQuestions[i];
-    return acc + (q && ((q.positive && ans) || (!q.positive && !ans)) ? 1 : 0);
+    if (!q) return acc;
+    return acc + ((q.positive && ans) || (!q.positive && !ans) ? 1 : 0);
   }, 0);
 
   const tabs = [
@@ -233,22 +234,23 @@ export default function EstudianteDashboard() {
 
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Tab Navigation */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
+        <nav aria-label="Navegación del panel" className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-semibold text-sm whitespace-nowrap transition-all ${
+              aria-current={activeTab === tab.id ? 'page' : undefined}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl font-semibold text-sm whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                 activeTab === tab.id
                   ? 'bg-primary text-white shadow-lg shadow-primary/20'
                   : 'bg-white text-muted-foreground hover:bg-primary/5 hover:text-primary border border-primary/10'
               }`}
             >
-              <tab.icon className="w-4 h-4" />
+              <tab.icon className="w-4 h-4" aria-hidden="true" />
               {tab.label}
             </button>
           ))}
-        </div>
+        </nav>
 
         {/* ── INICIO ── */}
         {activeTab === 'inicio' && (

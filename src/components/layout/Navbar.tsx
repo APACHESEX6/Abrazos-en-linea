@@ -91,7 +91,7 @@ export function Navbar() {
     <nav className={cn(
       "fixed top-0 w-full z-50 transition-all duration-700 px-4 md:px-8 py-4",
       scrolled ? "bg-white/80 backdrop-blur-2xl shadow-sm translate-y-0" : "bg-transparent py-6"
-    )}>
+    )} aria-label="Navegación principal">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="bg-primary p-2.5 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-all duration-500">

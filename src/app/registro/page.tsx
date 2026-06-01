@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Heart, Loader2, AlertCircle, GraduationCap, Stethoscope, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Heart, Loader2, AlertCircle, GraduationCap, Stethoscope, ChevronRight, ChevronLeft, Eye, EyeOff } from 'lucide-react';
 
 const GRADOS = [
   '6° Primaria', '1° Secundaria', '2° Secundaria', '3° Secundaria',
@@ -34,6 +34,7 @@ export default function RegistroPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   // Campos del estudiante
   const [grado, setGrado] = useState('');
@@ -49,12 +50,22 @@ export default function RegistroPage() {
   const handleStep1 = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden.');
+
+    if (!nombre.trim() || !apellido.trim()) {
+      setError('Por favor ingresa tu nombre y apellido.');
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      setError('El correo electrónico no tiene un formato válido.');
       return;
     }
     if (password.length < 6) {
       setError('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Las contraseñas no coinciden.');
       return;
     }
     setStep(2);
@@ -93,8 +104,10 @@ export default function RegistroPage() {
         setError('Este correo ya está registrado. Intenta iniciar sesión.');
       } else if (code === 'auth/invalid-email') {
         setError('El correo electrónico no es válido.');
+      } else if (code === 'auth/weak-password') {
+        setError('La contraseña es muy débil. Usa al menos 6 caracteres.');
       } else {
-        setError('Error al crear la cuenta. Verifica tu conexión.');
+        setError('Error al crear la cuenta. Verifica tu conexión e intenta de nuevo.');
       }
     } finally {
       setLoading(false);
@@ -104,10 +117,9 @@ export default function RegistroPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary/40 via-background to-accent/20 flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-lg animate-fade-up">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 justify-center mb-8 group">
+        <Link href="/" className="flex items-center gap-3 justify-center mb-8 group" aria-label="Volver al inicio">
           <div className="bg-primary p-2.5 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-all duration-500">
-            <Heart className="w-6 h-6 text-white fill-white/20" />
+            <Heart className="w-6 h-6 text-white fill-white/20" aria-hidden="true" />
           </div>
           <span className="text-2xl font-headline font-bold tracking-tight text-foreground">
             Abrazos<span className="text-primary"> en línea</span>
@@ -135,7 +147,7 @@ export default function RegistroPage() {
           <CardContent className="p-8 pt-6">
             {/* PASO 1 */}
             {step === 1 && (
-              <form onSubmit={handleStep1} className="space-y-5">
+              <form onSubmit={handleStep1} className="space-y-5" noValidate aria-label="Formulario de registro paso 1">
                 {/* Rol */}
                 <div className="space-y-3">
                   <Label className="font-semibold text-sm">Soy...</Label>
@@ -211,26 +223,38 @@ export default function RegistroPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="password" className="font-semibold text-sm">Contraseña</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Mínimo 6 caracteres"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="h-12 rounded-2xl border-primary/20"
-                    required
-                  />
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Mínimo 6 caracteres"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="h-12 rounded-2xl border-primary/20 pr-12"
+                      autoComplete="new-password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="confirmPassword" className="font-semibold text-sm">Confirmar contraseña</Label>
                   <Input
                     id="confirmPassword"
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Repite tu contraseña"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="h-12 rounded-2xl border-primary/20"
+                    autoComplete="new-password"
                     required
                   />
                 </div>
