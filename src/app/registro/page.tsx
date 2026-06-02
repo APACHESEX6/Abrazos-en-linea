@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Heart, Loader2, AlertCircle, GraduationCap, Stethoscope, ChevronRight, ChevronLeft, Eye, EyeOff } from 'lucide-react';
+import Image from 'next/image';
 
 const GRADOS = [
   '6° Primaria', '1° Secundaria', '2° Secundaria', '3° Secundaria',
@@ -118,8 +119,8 @@ export default function RegistroPage() {
     <div className="min-h-screen bg-gradient-to-br from-secondary/40 via-background to-accent/20 flex items-center justify-center p-4 py-12">
       <div className="w-full max-w-lg animate-fade-up">
         <Link href="/" className="flex items-center gap-3 justify-center mb-8 group" aria-label="Volver al inicio">
-          <div className="bg-primary p-2.5 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-all duration-500">
-            <Heart className="w-6 h-6 text-white fill-white/20" aria-hidden="true" />
+          <div className="w-10 h-10 relative group-hover:scale-110 transition-transform duration-300">
+            <Image src="/logo.png" alt="Logo Abrazos en línea" fill className="object-contain" />
           </div>
           <span className="text-2xl font-headline font-bold tracking-tight text-foreground">
             Abrazos<span className="text-primary"> en línea</span>

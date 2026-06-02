@@ -11,6 +11,7 @@ import {
   Stethoscope, Building2, Mail, Loader2, FileText,
   ShieldCheck, Phone, Globe, ChevronRight, Brain
 } from 'lucide-react';
+import Image from 'next/image';
 
 const resources = [
   { title: "Guía de Evaluación del Riesgo Suicida", type: "Protocolo Clínico", icon: FileText, color: "bg-purple-50 text-purple-600", link: "https://www.who.int/publications/i/item/9789241564595" },
@@ -53,9 +54,9 @@ export default function ProfesionalDashboard() {
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-xl border-b border-primary/10 sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary p-2 rounded-xl shadow-md shadow-primary/20 group-hover:rotate-12 transition-all">
-              <Heart className="w-5 h-5 text-white fill-white/20" />
+          <Link href="/" className="flex items-center gap-2 group" aria-label="Inicio">
+            <div className="w-9 h-9 relative group-hover:scale-110 transition-transform">
+              <Image src="/logo.png" alt="Logo" fill className="object-contain" />
             </div>
             <span className="font-headline font-bold text-lg hidden sm:block">
               Abrazos<span className="text-primary"> en línea</span>

@@ -1,8 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { Heart, Instagram, Twitter, Facebook, Phone, Shield } from 'lucide-react';
+import { Phone, Shield } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Instagram, Twitter, Facebook } from 'lucide-react';
 
 export function Footer() {
   const [year, setYear] = useState<number | null>(null);
@@ -17,8 +19,8 @@ export function Footer() {
         {/* Brand */}
         <div className="col-span-1 md:col-span-2 space-y-6 md:space-y-8">
           <Link href="/" className="flex items-center gap-3 group" aria-label="Abrazos en línea - Inicio">
-            <div className="bg-primary p-2 rounded-xl shadow-md shadow-primary/20 group-hover:rotate-12 transition-all duration-500">
-              <Heart className="w-5 h-5 text-white fill-white/20" aria-hidden="true" />
+            <div className="w-12 h-12 relative group-hover:scale-110 transition-transform duration-300">
+              <Image src="/logo.png" alt="Logo Abrazos en línea" fill className="object-contain" />
             </div>
             <span className="text-2xl md:text-3xl font-headline font-bold text-foreground">
               Abrazos<span className="text-primary"> en línea</span>

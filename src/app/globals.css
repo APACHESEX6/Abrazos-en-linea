@@ -4,25 +4,26 @@
 
 @layer base {
   :root {
-    --background: 240 100% 99%;
-    --foreground: 281 30% 15%;
+    /* Rosa vibrante inspirado en el logo */
+    --background: 350 100% 99%;
+    --foreground: 340 35% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 281 30% 15%;
+    --card-foreground: 340 35% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 281 30% 15%;
-    --primary: 262 60% 65%;
-    --primary-foreground: 281 40% 98%;
-    --secondary: 261 41% 95%;
-    --secondary-foreground: 281 30% 20%;
-    --muted: 261 20% 97%;
-    --muted-foreground: 281 10% 45%;
-    --accent: 262 52% 92%;
-    --accent-foreground: 281 30% 20%;
+    --popover-foreground: 340 35% 12%;
+    --primary: 330 85% 55%;          /* Rosa fuerte del corazón */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 340 60% 96%;        /* Rosa muy claro */
+    --secondary-foreground: 340 35% 20%;
+    --muted: 340 30% 97%;
+    --muted-foreground: 340 15% 45%;
+    --accent: 330 70% 92%;           /* Rosa suave */
+    --accent-foreground: 340 35% 20%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 281 20% 92%;
-    --input: 281 20% 92%;
-    --ring: 262 60% 65%;
+    --border: 340 30% 90%;
+    --input: 340 30% 90%;
+    --ring: 330 85% 55%;
     --radius: 1.5rem;
   }
 }

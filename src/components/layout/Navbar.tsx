@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Heart, ShieldAlert, Phone, LogIn, UserPlus, LayoutDashboard, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -93,11 +94,17 @@ export function Navbar() {
       scrolled ? "bg-white/80 backdrop-blur-2xl shadow-sm translate-y-0" : "bg-transparent py-6"
     )} aria-label="Navegación principal">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="bg-primary p-2.5 rounded-2xl shadow-lg shadow-primary/20 group-hover:rotate-12 transition-all duration-500">
-            <Heart className="w-6 h-6 text-white fill-white/20" />
+        <Link href="/" className="flex items-center gap-2 group" aria-label="Abrazos en línea - Inicio">
+          <div className="w-10 h-10 relative group-hover:scale-110 transition-transform duration-300">
+            <Image
+              src="/logo.png"
+              alt="Logo Abrazos en línea"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
-          <span className="text-2xl font-headline font-bold tracking-tight text-foreground">
+          <span className="text-xl md:text-2xl font-headline font-bold tracking-tight text-foreground">
             Abrazos<span className="text-primary"> en línea</span>
           </span>
         </Link>
